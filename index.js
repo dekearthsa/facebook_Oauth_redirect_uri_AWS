@@ -8,6 +8,7 @@ import axios from "axios";
 const client_id = "";
 const client_secret = "";
 const TableName = "demo_poc_nuviadi_facebook_page_id";
+const url = ""
 
 const client = new DynamoDBClient({});
 const dynamo = DynamoDBDocumentClient.from(client);
@@ -22,7 +23,7 @@ export const handler = async (event) => {
                 body: JSON.stringify({ error: 'Missing code from Facebook' }),
             };
         }
-        const redirectUri = encodeURIComponent("https://rn2e5isf6cuxn3hb247aeyzdha0hburd.lambda-url.ap-southeast-1.on.aws/");
+        const redirectUri = encodeURIComponent(`${url}`);
         const tokenRes = await fetch(
             `https://graph.facebook.com/v22.0/oauth/access_token?` +
             `client_id=${client_id}` +
